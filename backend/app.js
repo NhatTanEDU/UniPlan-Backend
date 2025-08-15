@@ -180,14 +180,18 @@ app.use(express.json());
 const path = require('path');
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Block ALL Socket.IO requests silently BEFORE any logging
+// Socket.IO requests handling - Allow when feature is enabled
 app.use((req, res, next) => {
   // Check if this is a Socket.IO request
-  if (req.url.startsWith('/socket.io/') && !isFeatureEnabled('SOCKET_IO')) {
-    // Silent drop - no logging, no response, just end immediately
-    res.statusCode = 404;
-    res.end();
-    return;
+  if (req.url.startsWith('/socket.io/')) {
+    if (!isFeatureEnabled('SOCKET_IO')) {
+      console.log('⚠️  Socket.IO request blocked - feature disabled');
+      res.statusCode = 404;
+      res.end();
+      return;
+    } else {
+      console.log('✅ Socket.IO request allowed - feature enabled');
+    }
   }
   next();
 });
