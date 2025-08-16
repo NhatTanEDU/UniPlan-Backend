@@ -2,10 +2,19 @@
 nixPkgs = ["nodejs", "npm"]
 
 [phases.install]
-cmds = ["npm ci"]
+cmds = [
+  "echo 'Current directory:' && pwd",
+  "echo 'Files in current directory:' && ls -la",
+  "echo 'Looking for server.js:' && find . -name 'server.js' -type f",
+  "npm ci"
+]
 
 [phases.build]
-cmds = ["echo 'No build step required for Node.js backend'"]
+cmds = [
+  "echo 'Build phase - Current directory:' && pwd",
+  "echo 'Files after install:' && ls -la",
+  "echo 'Verifying server.js exists:' && test -f server.js && echo 'server.js found!' || echo 'server.js NOT found!'"
+]
 
 [start]
-cmd = "node server.js"
+cmd = "node start.js"

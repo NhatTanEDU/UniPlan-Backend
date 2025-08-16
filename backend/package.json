@@ -39,7 +39,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "migrate": "node migrations/migrateUsers.js",
-    "start": "node server.js",
+    "start": "node start.js",
     "start:safe": "node safe-start.js",
     "start:production": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
