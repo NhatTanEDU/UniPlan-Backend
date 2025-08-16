@@ -373,4 +373,14 @@ if (isFeatureEnabled('ADVANCED_SEARCH')) {
 // User permissions routes (for role-based access control)
 app.use('/api/user-permissions', userPermissionsRoutes);
 
+// ===== HEALTH CHECK ENDPOINT FOR RAILWAY DOCKER =====
+app.get('/api/health', (req, res) => {
+  res.status(200).json({
+    status: 'OK',
+    message: 'UniPlan Backend is running',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development'
+  });
+});
+
 module.exports = app;
