@@ -162,7 +162,8 @@ app.use(haltOnTimedout);
 const corsOptions = {
   origin: [
     'http://localhost:3000', // Local development
-    'https://web-production-435e4.up.railway.app' // Railway frontend
+    'https://uniplan-frontend-production.up.railway.app', // New UniPlan frontend
+    'https://web-production-435e4.up.railway.app' // Old frontend (backup)
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],

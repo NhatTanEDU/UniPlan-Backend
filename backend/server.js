@@ -13,6 +13,7 @@ const io = new Server(server, {
   cors: {
     origin: [
       'http://localhost:3000',
+      'https://uniplan-frontend-production.up.railway.app',
       'https://web-production-435e4.up.railway.app'
     ],
     methods: ['GET', 'POST'],
